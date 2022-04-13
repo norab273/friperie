@@ -39,14 +39,14 @@ services:
     volumes: ["./:/var/www/web:cached"]
     networks: ["friperie"]
 
-  # front:
-  #   image: node:16
-  #   working_dir: /var/www/front
-  #   entrypoint: /var/www/front/entrypoint.sh
-  #   container_name: react_friperie
-  #   ports:
-  #     - "3000:3000"
-  #   depends_on:
-  #     - php
-  #   volumes: ["./front:/var/www/front"]
-  #   networks: ["friperie"]
+  front:
+    image: node:16
+    working_dir: /var/www/front
+    entrypoint: /var/www/front/entrypoint.sh
+    container_name: react_friperie
+    ports:
+      - "3000:3000"
+    depends_on:
+      - php
+    volumes: ["./front:/var/www/front"]
+    networks: ["friperie"]
