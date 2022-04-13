@@ -1,0 +1,19 @@
+.CardsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 408px);
+  justify-content: center;
+  grid-gap: 32px 46px;
+}
+
+.Title {
+  margin-left: 30px;
+  font-weight: normal;
+  font-size: 30px;
+}
+
+@media (max-width: 460px) {
+  .CardsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+  }
+}

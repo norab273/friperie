@@ -1,0 +1,118 @@
+.Card {
+  display: flex;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.CardRight {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.CardLeft {
+  width: 40%;
+}
+
+.Photo {
+  margin-right: 20px;
+}
+
+.Nom {
+  font-family: "Roboto";
+  font-size: 60px;
+  line-height: 60px;
+  margin-bottom: 30px;
+}
+
+.Prix {
+  font-family: "Roboto";
+  font-size: 50px;
+  line-height: 60px;
+  margin-bottom: 30px;
+}
+
+.Description {
+  font-family: "Roboto";
+  font-size: 20px;
+  line-height: 30px;
+  margin-bottom: 30px;
+}
+
+.Taille {
+  font-family: "Roboto";
+  font-size: 20px;
+  line-height: 30px;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.Button {
+  background-color: #a64ac9;
+  width: 80%;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 30px;
+  cursor: pointer;
+  border-radius: 25px;
+  font-weight: bold;
+}
+
+@media (max-width: 780px) {
+  .Nom {
+    font-size: 40px;
+    margin-bottom: 20px;
+    line-height: 20px;
+  }
+
+  .Prix {
+    font-size: 30px;
+    line-height: 20px;
+    margin-bottom: 10px;
+  }
+
+  .Description {
+    font-size: 18px;
+    line-height: 20px;
+    margin-bottom: 10px;
+  }
+
+  .Taille {
+    font-size: 18px;
+    line-height: 20px;
+    margin-bottom: 10px;
+  }
+
+  .Button {
+    width: 260px;
+    font-size: 20px;
+  }
+
+  .Photo {
+    max-height: 520px;
+  }
+}
+
+@media (max-width: 600px) {
+  .Card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .CardLeft {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .CardRight {
+    padding: 10px;
+    margin-top: 20px;
+    width: 100%;
+    align-items: center;
+  }
+}

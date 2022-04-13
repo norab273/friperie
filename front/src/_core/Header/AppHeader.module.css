@@ -1,0 +1,229 @@
+.HeaderContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Title {
+  font-family: "Playfair Display";
+  font-style: italic;
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 67px;
+  position: relative;
+  margin-left: 35px;
+  margin-top: 15px;
+  color: black;
+  text-decoration: none !important;
+}
+
+.Title::before {
+  content: ".";
+  font-family: "Playfair Display";
+  font-style: italic;
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 67px;
+  color: #a64ac9;
+  position: absolute;
+  bottom: 14px;
+  left: -20px;
+}
+
+.Title::after {
+  content: ".";
+  font-family: "Playfair Display";
+  font-style: italic;
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 67px;
+  color: #a64ac9;
+  position: absolute;
+  bottom: 14px;
+  right: -26px;
+}
+
+.HeaderMenu {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 5px;
+}
+
+.Catalogue,
+.Panier,
+.ItemsPanier {
+  font-family: "Playfair Display";
+  font-style: italic;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 40px;
+  position: relative;
+  color: black;
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+.Catalogue {
+  margin-right: 20px;
+}
+
+.ItemsPanier {
+  margin-right: 42px;
+}
+
+.Panier {
+  margin-right: 5px;
+}
+
+.Catalogue:hover,
+.Panier:hover {
+  color: #a64ac9;
+}
+
+.Catalogue::before {
+  content: ".";
+  font-family: "Playfair Display";
+  font-style: italic;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 67px;
+  color: #a64ac9;
+  position: absolute;
+  bottom: -2px;
+  left: -12px;
+}
+
+.Catalogue::after,
+.ItemsPanier::after {
+  content: ".";
+  font-family: "Playfair Display";
+  font-style: italic;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 67px;
+  color: #a64ac9;
+  position: absolute;
+  bottom: -2px;
+  right: -18px;
+}
+
+.TitleLink,
+.PanierLink {
+  text-decoration: none !important;
+}
+
+.PanierLink {
+  display: flex;
+  margin-left: 5px;
+}
+
+.SecondaryMenu {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  right: 27px;
+  top: 91px;
+}
+
+.Link {
+  font-family: "Playfair Display";
+  font-style: italic;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 20px;
+  margin-left: 25px;
+  position: relative;
+  cursor: pointer;
+  color: black;
+  text-decoration: none !important;
+}
+
+.Link::before {
+  content: ".";
+  font-family: "Playfair Display";
+  font-style: italic;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 67px;
+  color: #a64ac9;
+  position: absolute;
+  bottom: -14px;
+  left: -13px;
+}
+
+.PanierLink:hover {
+  color: #a64ac9;
+}
+
+@media (max-width: 920px) {
+  .HeaderContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .HeaderMenu {
+    margin-bottom: 11px;
+  }
+
+  .Title {
+    font-size: 25px;
+    line-height: 30px;
+    margin-left: 23px;
+    width: 304px;
+  }
+
+  .Catalogue,
+  .Panier,
+  .ItemsPanier {
+    font-weight: 100;
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .Catalogue {
+    margin-left: 15px;
+  }
+
+  .Catalogue::before {
+    position: absolute;
+    bottom: -12px;
+    left: -11px;
+    font-size: 39px;
+  }
+
+  .Catalogue::after,
+  .ItemsPanier::after {
+    position: absolute;
+    bottom: -12px;
+    right: -23px;
+    font-size: 39px;
+  }
+
+  .Title::before {
+    position: absolute;
+    bottom: -3px;
+    left: -18px;
+  }
+
+  .Title::after {
+    position: absolute;
+    bottom: -3px;
+    right: 26px;
+  }
+
+  .Link::before {
+    content: "";
+  }
+
+  .Link {
+    margin-right: 20px;
+    margin-left: 0;
+  }
+
+  .SecondaryMenu {
+    display: block;
+    position: unset;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
