@@ -1,21 +1,52 @@
-version: '3'
+version: "3.3"
+networks:
+  friperie:
+    driver: bridge
 
 services:
-###> doctrine/doctrine-bundle ###
-  database:
-    image: postgres:${POSTGRES_VERSION:-13}-alpine
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
-      POSTGRES_USER: ${POSTGRES_USER:-symfony}
+  # ========================
+  # MySQL
+  # ========================
+  mysql:
+    image: mysql:5.7
+    container_name: mysql_friperie
+    env_file:
+      - ./.docker/mysql/mysql.env
     volumes:
-      - db-data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
-###< doctrine/doctrine-bundle ###
+      - "./.docker/mysql/storage:/var/lib/mysql"
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+    networks: ["friperie"]
 
-volumes:
-###> doctrine/doctrine-bundle ###
-  db-data:
-###< doctrine/doctrine-bundle ###
+  # ========================
+  # Application
+  # ========================
+  php:
+    build: ./.docker/php/
+    container_name: php_friperie
+    volumes:
+      - "./:/var/www/web:cached"
+    networks: ["friperie"]
+
+  nginx:
+    build: ./.docker/nginx
+    container_name: nginx_friperie
+    ports:
+      - "3200:80"
+    depends_on:
+      - php
+    volumes: ["./:/var/www/web:cached"]
+    networks: ["friperie"]
+
+  front:
+    image: node:16
+    working_dir: /var/www/front
+    entrypoint: /var/www/front/entrypoint.sh
+    container_name: react_friperie
+    ports:
+      - "3000:3000"
+    depends_on:
+      - php
+    volumes: ["./front:/var/www/front"]
+    networks: ["friperie"]

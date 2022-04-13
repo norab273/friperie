@@ -1,0 +1,57 @@
+version: "3.4"
+
+services:
+  frip_nginx:
+    container_name: frip_nginx
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile-prod
+      target: nginx
+    ports:
+      - "3200:80"
+    depends_on:
+      - php
+    networks: ["friperie"]
+
+  frip_php:
+    container_name: frip_php
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile-prod
+      target: php
+    networks: ["friperie"]
+    volumes:
+      - volumeEFS:/var/www/html/public/upload
+
+  frip_db:
+    container_name: frip_db
+    image: mysql:5.7
+    env_file:
+      - ./.docker/mysql/mysql.env
+    volumes:
+      - "./.docker/mysql/storage:/var/lib/mysql"
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+    networks: ["friperie"]
+
+  front:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile-prod
+      target: front
+    working_dir: /var/www/front
+    entrypoint: /var/www/front/entrypoint.sh
+    container_name: react_frip
+    ports:
+      - "3000:3000"
+    depends_on:
+      - php
+    networks: ["friperie"]
+
+networks:
+  friperie:
+    driver: bridge
+volumes:
+  volumeEFS:
+    external: true
