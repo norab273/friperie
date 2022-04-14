@@ -1,6 +1,6 @@
 import './App.css';
 import AppHeader from "../Header/AppHeader";
-import AppFooter from  "../Footer/AppFooter"
+import AppFooter from "../Footer/AppFooter"
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
@@ -13,11 +13,12 @@ const LesRobes = lazy(() => import('../../_business/LesRobes/LesRobes'));
 const Tout = lazy(() => import('../../_business/Tout/Tout'));
 const Panier = lazy(() => import('../../_business/Panier/Panier'));
 const Produit = lazy(() => import('../../_business/Produit/Produit'));
+const FinalisationPaiement = lazy(() => import('../../_business/FinalisationPaiement/FinalisationPaiement'));
 
 const App = () => (
   <Router>
     <Suspense fallback={<div>Chargement...</div>}>
-    <AppHeader/>
+      <AppHeader />
       <Routes>
         <Route path="/bas" element={<LesBas />} />
         <Route path="/hauts" element={<LesHauts />} />
@@ -27,10 +28,11 @@ const App = () => (
         <Route path="/panier" element={<Panier />} />
         <Route path="/accessoires" element={<LesAccessoires />} />
         <Route path="/produit" element={<Produit />} />
+        <Route path="/confirmation" element={<FinalisationPaiement />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </Suspense>
-    <AppFooter/>
+    <AppFooter />
   </Router>
 );
 export default App;
