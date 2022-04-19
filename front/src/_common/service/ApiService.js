@@ -1,15 +1,16 @@
-import { storageRead } from "./StorageService";
+import { storageRead, storageWrite } from "./StorageService";
 
 let _token;
-let handle401Error = () => { };
-export const set401ErrorHandler = (handler) => {
-    handle401Error = handler;
+//let handle401Error = () => {};
+export const set401ErrorHandler = (/*handler*/) => {
+    //handle401Error = handler;
 };
 
 export const setToken = (bearer) => {
     _token = bearer;
 };
 export const setRefreshToken = (token) => {
+    storageWrite("token", token);
     setToken(token);
 };
 

@@ -1,22 +1,30 @@
 import Style from "./Produit.module.css";
-import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
-import haut7 from "../../_common/photos/haut7.jpg"
+import { useParams } from "react-router-dom";
+import { useProduit } from "./ProduitServiceAPI";
 
 const Produit = () => {
-    // const { id } = useParams();
+
+    const { id } = useParams();
+    const [produit, dataLoaded] = useProduit(id);
+
+    if (!dataLoaded) {
+        return <div>Chargement en cours...</div>
+    }
+
+    console.log("produit", produit)
 
     return (
         <div className={Style.Card} >
             <div className={Style.CardLeft}>
-                    <img src={haut7} className={Style.Photo} alt="" /> 
+                <img src={produit[0].photo} className={Style.Photo} alt="" />
             </div>
             <div className={Style.CardRight}>
                 <div>
-                    <p className={Style.Nom}>Haut rose</p>
-                    <p className={Style.Prix}>12 €</p>
-                    <p className={Style.Description}> Chemise femme fluide en tissu de couleur bleu marine à motifs fleuris dans les tons jaune, rose, bleu et vert. Coupe évasée au bas, elle est fendue au bas sur les côtés et elle a des jolis boutons tout du long au devant. A noter : certainement fait à la main, donc pièce unique. Composition : non indiquée mais synthétique</p>
-                    <p className={Style.Taille}> Taille : 38 </p>
+                    <p className={Style.Nom}>{produit[0].name}</p>
+                    <p className={Style.Prix}>{produit[0].price} €</p>
+                    <p className={Style.Description}>{produit[0].description}</p>
+                    <p className={Style.Taille}> Taille : {produit[0].size} </p>
                 </div>
                 <button className={Style.Button}>Ajouter au panier</button>
             </div>
@@ -25,7 +33,7 @@ const Produit = () => {
 };
 
 Produit.propTypes = {
-    id: PropTypes.number.isRequired,
+    id: PropTypes.number,
     nom: PropTypes.string,
     prix: PropTypes.number,
 };

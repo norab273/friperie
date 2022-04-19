@@ -20,14 +20,14 @@ const App = () => (
     <Suspense fallback={<div>Chargement...</div>}>
       <AppHeader />
       <Routes>
-        <Route path="/bas" element={<LesBas />} />
-        <Route path="/hauts" element={<LesHauts />} />
+        <Route path="/catalogue/bas" element={<LesBas />} />
+        <Route path="/catalogue/hauts" element={<LesHauts />} />
         <Route path="/nouveautes" element={<LesNouveautes />} />
-        <Route path="/robes" element={<LesRobes />} />
+        <Route path="/catalogue/robes" element={<LesRobes />} />
         <Route path="/tout" element={<Tout />} />
         <Route path="/panier" element={<Panier />} />
-        <Route path="/accessoires" element={<LesAccessoires />} />
-        <Route path="/produit" element={<Produit />} />
+        <Route path="/catalogue/accessoires" element={<LesAccessoires />} />
+        <Route path="/produit/:id" element={<Produit />} />
         <Route path="/confirmation" element={<FinalisationPaiement />} />
         <Route path="/" element={<Home />} />
       </Routes>

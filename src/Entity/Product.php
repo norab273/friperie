@@ -12,30 +12,34 @@ class Product
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups("liste_products")]
+    #[Groups(["liste_products", "detail_product"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups("liste_products")]
+    #[Groups(["liste_products", "detail_product"])]
     private $name;
 
     #[ORM\Column(type: 'integer')]
-    #[Groups("liste_products")]
+    #[Groups(["liste_products", "detail_product"])]
     private $price;
 
     #[ORM\Column(type: 'string', length: 1000)]
-    #[Groups("liste_products")]
+    #[Groups(["liste_products", "detail_product"])]
     private $photo;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups("liste_products")]
+    #[Groups(["liste_products", "detail_product"])]
     private $category;
 
     #[ORM\Column(type: 'string', length: 10000, nullable: true)]
+    #[Groups("detail_product")]
     private $description;
 
+
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups("detail_product")]
     private $size;
+
 
     #[ORM\Column(type: 'date')]
     private $date;

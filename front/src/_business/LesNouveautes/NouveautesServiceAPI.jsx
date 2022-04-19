@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 
 export const getNouveautes = async () => {
     const response = await get(process.env.REACT_APP_API_URL + "/api/nouveautes");
-
     return response;
 }
 

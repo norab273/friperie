@@ -21,27 +21,26 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
-    public function getPaginatedProducts($page, $limit, ?int $category)
+    public function getPaginatedProducts($page, $limit, ?string $category)
     {
         $query = $this->createQueryBuilder('p')
+            ->andWhere('p.category = :cat')
             ->orderBy('p.date', 'DESC')
+            ->setParameter('cat', $category)
             ->setFirstResult(($page * $limit) - $limit)
             ->setMaxResults($limit);
-        if ($category) {
-            $query->andWhere('p.category = :category')
-                ->setParameter('category', $category);
-        }
+
         return $query->getQuery()->getResult();
     }
 
-    public function getNombreTotalProducts(?int $category)
+    public function getNombreTotalProducts(?string $category)
     {
         $query = $this->createQueryBuilder('p')
             ->select('COUNT(p)');
 
         if ($category) {
-            $query->andWhere('p.category = :category')
-                ->setParameter('category', $category);
+            $query->andWhere('p.category = :cat')
+                ->setParameter('cat', $category);
         }
         return $query->getQuery()->getSingleScalarResult();
     }

@@ -26,7 +26,7 @@ const AppHeader = () => {
         <div>
             <div className={Style.HeaderContainer}>
                 <Link className={Style.TitleLink} to="/">
-                <h1 className={Style.Title}>Fripées comme jamais</h1>
+                    <h1 className={Style.Title}>Fripées comme jamais</h1>
                 </Link>
                 <nav className={Style.HeaderMenu}>
                     <p className={Style.Catalogue} onClick={handleMenuClick}>Catalogue</p>
@@ -36,10 +36,10 @@ const AppHeader = () => {
             {isActive && <div className={Style.SecondaryMenu}>
                 <Link className={Style.Link} to="/tout">Tout</Link>
                 <Link className={Style.Link} to="/nouveautes">Les Nouveautés</Link>
-                <Link className={Style.Link} to="/hauts">Les Hauts</Link>
-                <Link className={Style.Link} to="/bas">Les Bas</Link>
-                <Link className={Style.Link} to="/robes">Les Robes</Link>
-                <Link className={Style.Link} to="/accessoires">Les Accessoires</Link>
+                <Link className={Style.Link} to="/catalogue/hauts">Les Hauts</Link>
+                <Link className={Style.Link} to="/catalogue/bas">Les Bas</Link>
+                <Link className={Style.Link} to="/catalogue/robes">Les Robes</Link>
+                <Link className={Style.Link} to="/catalogue/accessoires">Les Accessoires</Link>
             </div>}
         </div>
     );

@@ -14,7 +14,7 @@ class ProductController extends AbstractController
     const NB_PRODUCTS_PAR_PAGE = 3;
 
     /**
-     * @Route("/nouveautes", name="last_products", methods={"GET"})
+     * @Route("/api/nouveautes", name="last_products", methods={"GET"})
      */
     public function getProductsLast(ProductRepository $productRepository, Request $request): JsonResponse
     {
@@ -34,22 +34,70 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/catalogue", name="liste_products", methods={"GET"})
+     * @Route("/api/catalogue/{category}", name="liste_products", methods={"GET"})
      */
-    public function getProducts(ProductRepository $productRepository, Request $request): JsonResponse
+    public function getProductsCatalogue(ProductRepository $productRepository, $category): JsonResponse
     {
-        $category = $request->query->getInt('category');
-        // dd($category);
 
-        $total = $productRepository->getNombreTotalProducts($category);
-
-        $products = $productRepository->getPaginatedProducts($request->query->getInt('page', 1), self::NB_PRODUCTS_PAR_PAGE, $category);
+        $products = $productRepository->findBy(['category' => $category]);
 
         return $this->json(
-            ["products" => $products, "total" => $total, "limit" => self::NB_PRODUCTS_PAR_PAGE],
+            $products,
             200,
             [],
             ['groups' => 'liste_products']
         );
     }
+
+    /**
+     * @Route("/api/tout", name="liste_all_products", methods={"GET"})
+     */
+    public function getAllProducts(ProductRepository $productRepository): JsonResponse
+    {
+
+        $products = $productRepository->findAll();
+
+        return $this->json(
+            $products,
+            200,
+            [],
+            ['groups' => 'liste_products']
+        );
+    }
+
+    /**
+     * @Route("/api/product/{id}", name="product", methods={"GET"})
+     */
+    public function getProductsCat(ProductRepository $productRepository, $id): JsonResponse
+    {
+
+        $products = $productRepository->findBy(['id' => $id]);
+
+        return $this->json(
+            $products,
+            200,
+            [],
+            ['groups' => 'detail_product']
+        );
+    }
+
+
+    // /**
+    //  * @Route("/catalogue/{category}/{page}", name="liste_products", methods={"GET"}, requirements={"page"="\d+"})
+    //  */
+    // public function getProducts(ProductRepository $productRepository, Request $request): JsonResponse
+    // {
+    //     $category = $request->query->get('category', 'tout');
+
+    //     $total = $productRepository->getNombreTotalProducts($category);
+
+    //     $products = $productRepository->getPaginatedProducts($request->query->getInt('page', 1), self::NB_PRODUCTS_PAR_PAGE, $category);
+
+    //     return $this->json(
+    //         ["products" => $products, "total" => $total, "limit" => self::NB_PRODUCTS_PAR_PAGE],
+    //         200,
+    //         [],
+    //         ['groups' => 'liste_products']
+    //     );
+    // }
 }
