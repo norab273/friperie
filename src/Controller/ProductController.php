@@ -34,6 +34,22 @@ class ProductController extends AbstractController
     }
 
     /**
+     * @Route("/api/coupsdecoeur", name="liste_products", methods={"GET"})
+     */
+    public function getCoupsdeCoeur(ProductRepository $productRepository, $coupdecoeur): JsonResponse
+    {
+
+        $products = $productRepository->findBy(['coupdecoeur' => $coupdecoeur]);
+
+        return $this->json(
+            $products,
+            200,
+            [],
+            ['groups' => 'liste_products']
+        );
+    }
+
+    /**
      * @Route("/api/catalogue/{category}", name="liste_products", methods={"GET"})
      */
     public function getProductsCatalogue(ProductRepository $productRepository, $category): JsonResponse
