@@ -8,6 +8,7 @@ import robe2 from "../../_common/photos/robe2.jpg"
 import robe3 from "../../_common/photos/robe3.jpg"
 import robe4 from "../../_common/photos/robe4.jpg"
 import { Link } from "react-router-dom";
+import { useCartInfo } from "./PanierServiceAPI";
 
 const Panier = () => {
   const panier = [
@@ -36,6 +37,10 @@ const Panier = () => {
       photo: robe4
     },
   ]
+
+  const cartInfo = useCartInfo();
+  console.log(cartInfo);
+
   return (
     <div>
       <h1 className={Style.Title}>Panier</h1>
