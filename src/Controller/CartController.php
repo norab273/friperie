@@ -14,7 +14,7 @@ class CartController extends AbstractController
     /**
      * @Route("/api/cart/add/{id}", name="cart_add", requirements={"id":"\d+"})
      */
-    public function add(int $id, ProductRepository $productRepository, CartService $cartService): void
+    public function add(int $id, ProductRepository $productRepository, CartService $cartService): JsonResponse
     {
         $product = $productRepository->find($id);
 
@@ -23,25 +23,25 @@ class CartController extends AbstractController
         }
 
         $cartService->add($id);
+
+        return new JsonResponse("Le produit $id a bien été ajouté");
     }
 
     /**
      * @Route("/api/cart", name="cart_show")
      */
-
     public function show(CartService $cartService): JsonResponse 
     {
         $detailedCart = $cartService->getDetailedCartItems();
-
+    
         $total = $cartService->getTotal();
 
-        return $this->json(
+        $response = $this->json(
             ['detailedCart' => $detailedCart, 'total' => $total],
             200,
-            [],
-            ['groups' => 'detail_product']
-    
         );
+
+        return $$response;
     }
 }
 

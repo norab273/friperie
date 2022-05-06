@@ -39,7 +39,7 @@ const Panier = () => {
   ]
 
   const cartInfo = useCartInfo();
-  console.log(cartInfo);
+  //console.log(cartInfo);
 
   return (
     <div>

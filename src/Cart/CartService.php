@@ -28,7 +28,6 @@ class CartService {
         }
 
         $session->set('cart', $cart);
-        
     }
 
     public function getTotal() : int {
@@ -44,7 +43,6 @@ class CartService {
         }
 
         return $total;
-
     }
 
     public function getDetailedCartItems() : array
@@ -52,10 +50,11 @@ class CartService {
         $session = $this->requestStack->getSession();
         $detailedCart = [];
 
+
         foreach ($session->get('cart', []) as $id => $qty)
         {
             $product = $this->productRepository->find($id);
-
+        
             $detailedCart[] = [
                 'product' => $product,
                 'quantity' => $qty

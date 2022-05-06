@@ -26,9 +26,7 @@ export const useProduit = (id) => {
 
 let routeAddToCart = process.env.REACT_APP_API_URL + `/api/cart/add/{id}`;
 export const addItemToCart = async (productId) => {
-  const url = routeAddToCart.replace("{id}", productId);
-  console.log("productId", productId);
-  return productId;
+  const url = await get(routeAddToCart.replace("{id}", productId));;
 };
 
 // export const useProduit = (id) => {

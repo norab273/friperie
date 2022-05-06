@@ -18,7 +18,6 @@ const Produit = () => {
     await addItemToCart(id);
     navigate(`/tout`)
     window.scrollTo(0, 0);
-    console.log("add");
   }
 
   return (

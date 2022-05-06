@@ -17,7 +17,7 @@ export const useCartInfo = () => {
       setDataLoaded(true);
     });
   }, []);
-  console.log("cartInfoAPI", cartInfo);
+  //console.log("cartInfoAPI", cartInfo);
 
   return [cartInfo, dataLoaded];
 };
