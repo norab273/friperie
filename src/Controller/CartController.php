@@ -22,13 +22,15 @@ class CartController extends AbstractController
             throw $this->createNotFoundException("Le produit $id n'existe pas");
         }
 
-        $cartService->add($id);
+        $addItemToCart = $cartService->add($id);
 
-        return new JsonResponse("Le produit $id a bien été ajouté");
+        $response = $this->json($addItemToCart);
+
+        return $response;
     }
 
     /**
-     * @Route("/api/cart", name="cart_show")
+     * @Route("/api/cart", name="cart_show", methods={"GET"})
      */
     public function show(CartService $cartService): JsonResponse 
     {
@@ -41,7 +43,7 @@ class CartController extends AbstractController
             200,
         );
 
-        return $$response;
+        return $response;
     }
 }
 

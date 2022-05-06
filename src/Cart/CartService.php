@@ -3,6 +3,8 @@
 namespace App\Cart;
 
 use App\Repository\ProductRepository;
+use Doctrine\DBAL\Driver\OCI8\Exception\Error as ExceptionError;
+use Error;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class CartService {
@@ -23,11 +25,13 @@ class CartService {
 
         if(array_key_exists($id, $cart)) {
             dd('le produit est déjà dans le panier');
-        } else {
-            $cart[$id] = 1;
-        }
+        }   
+        
+        $cart[$id] = 1;
 
         $session->set('cart', $cart);
+        
+        return $session;
     }
 
     public function getTotal() : int {
