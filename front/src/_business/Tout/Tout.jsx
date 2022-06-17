@@ -1,6 +1,6 @@
 import VetementCard from "../../_common/card/VetementCard";
 import Style from "../Catalogue.module.css";
-import { useCatalogueTout } from "../Tout/ToutServiceAPI"
+import { useCatalogueTout } from "./ToutServiceAPI"
 
 
 const Tout = () => {

@@ -35,7 +35,6 @@ class Product
     #[Groups("detail_product")]
     private $description;
 
-
     #[ORM\Column(type: 'string', length: 255)]
     #[Groups("detail_product")]
     private $size;
@@ -43,6 +42,9 @@ class Product
 
     #[ORM\Column(type: 'date')]
     private $date;
+
+    #[ORM\Column(type: 'boolean')]
+    private $Favorites;
 
     public function getId(): ?int
     {
@@ -129,6 +131,18 @@ class Product
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getFavorites(): ?bool
+    {
+        return $this->Favorites;
+    }
+
+    public function setFavorites(bool $Favorites): self
+    {
+        $this->Favorites = $Favorites;
 
         return $this;
     }
