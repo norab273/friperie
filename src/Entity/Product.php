@@ -132,4 +132,16 @@ class Product
 
         return $this;
     }
+
+    public function getFavorites(): ?bool
+    {
+        return $this->favorites;
+    }
+
+    public function setFavorites(bool $Favorites): self
+    {
+        $this->Favorites = $favorites;
+
+        return $this;
+    }
 }
