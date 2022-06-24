@@ -34,6 +34,26 @@ class ProductController extends AbstractController
     }
 
     /**
+     * @Route("/api/coupdecoeur", name="coup_de_coeur", methods={"GET"})
+     */
+    public function getProductsFavorites(ProductRepository $productRepository, Request $request): JsonResponse
+    {
+
+        $products = $productRepository->findBy(
+            [],
+            ['favorites' => 'true'],
+            2
+        );
+
+        return $this->json(
+            $products,
+            200,
+            ['Access-Control-Allow-Origin' => '*'],
+            ['groups' => 'liste_products']
+        );
+    }
+
+    /**
      * @Route("/api/catalogue/{category}", name="liste_products", methods={"GET"})
      */
     public function getProductsCatalogue(ProductRepository $productRepository, $category): JsonResponse

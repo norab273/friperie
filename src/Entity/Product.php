@@ -31,7 +31,11 @@ class Product
     #[Groups(["liste_products", "detail_product"])]
     private $category;
 
-    #[ORM\Column(type: 'string', length: 10000, nullable: true)]
+    #[ORM\Column(type: 'boolean')]
+    #[Groups(["liste_products"])]
+    private $favorites;
+
+    #[ORM\Column(type: 'string', nullable: true)]
     #[Groups("detail_product")]
     private $description;
 
@@ -138,7 +142,7 @@ class Product
         return $this->favorites;
     }
 
-    public function setFavorites(bool $Favorites): self
+    public function setFavorites(bool $favorites): self
     {
         $this->Favorites = $favorites;
 
