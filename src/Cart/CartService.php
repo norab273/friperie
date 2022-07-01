@@ -30,6 +30,8 @@ class CartService {
         $cart[$id] = 1;
 
         $session->set('cart', $cart);
+
+        //dd($session->getId());
         
         return $session;
     }
@@ -53,6 +55,7 @@ class CartService {
     { 
         $session = $this->requestStack->getSession();
         $detailedCart = [];
+        
 
 
         foreach ($session->get('cart', []) as $id => $qty)
@@ -64,6 +67,8 @@ class CartService {
                 'quantity' => $qty
             ];
         }
+
+        //dd($session->getId());
 
         return $detailedCart;
     }
